@@ -1,0 +1,44 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: traefik
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://helm.traefik.io/traefik
+    chart: traefik
+    targetRevision: "33.2.1"
+    helm:
+      valuesObject:
+        deployment:
+          replicas: 1
+        tolerations:
+          - key: node-role.kubernetes.io/control-plane
+            operator: Exists
+            effect: NoSchedule
+        service:
+          type: LoadBalancer
+          loadBalancerIP: 87.248.156.185
+        ports:
+          web:
+            port: 80
+            exposedPort: 80
+          websecure:
+            port: 443
+            exposedPort: 443
+        ingressRoute:
+          dashboard:
+            enabled: false
+        logs:
+          general:
+            level: INFO
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: traefik
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
