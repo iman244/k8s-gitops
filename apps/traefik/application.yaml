@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/iman244/ctesiphon-k8s-gitops.git
     targetRevision: HEAD
-    path: charts
+    path: charts/traefik
     helm:
       chart: traefik-33.2.1.tgz
       valuesObject:

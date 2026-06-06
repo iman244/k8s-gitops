@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/iman244/ctesiphon-k8s-gitops.git
     targetRevision: HEAD
-    path: charts
+    path: charts/cert-manager
     helm:
       chart: cert-manager-v1.17.2.tgz
       valuesObject:
