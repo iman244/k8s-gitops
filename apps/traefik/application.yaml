@@ -36,8 +36,6 @@ spec:
         providers:
           kubernetesGateway:
             enabled: true
-        experimental:
-          kubernetesGateway: true   # Required for full Gateway API support in Traefik
   destination:
     server: https://kubernetes.default.svc
     namespace: traefik
