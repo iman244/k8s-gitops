@@ -5,7 +5,7 @@ metadata:
   namespace: task-manager
 spec:
   parentRefs:
-    - name: gateway
+    - name: traefik-gateway
       namespace: traefik
       sectionName: http
   hostnames:
