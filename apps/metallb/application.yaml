@@ -10,7 +10,6 @@ spec:
     targetRevision: HEAD
     path: charts/metallb
     helm:
-      chart: metallb-0.14.9.tgz
       valuesObject:
         controller:
           tolerations:

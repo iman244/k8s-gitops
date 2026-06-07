@@ -10,7 +10,6 @@ spec:
     targetRevision: HEAD
     path: charts/traefik
     helm:
-      chart: traefik-33.2.1.tgz
       valuesObject:
         deployment:
           replicas: 1

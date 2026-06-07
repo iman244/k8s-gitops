@@ -10,7 +10,6 @@ spec:
     targetRevision: HEAD
     path: charts/cert-manager
     helm:
-      chart: cert-manager-v1.17.2.tgz
       valuesObject:
         crds:
           enabled: true
