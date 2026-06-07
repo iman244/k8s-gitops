@@ -7,7 +7,7 @@ spec:
   parentRefs:
     - name: traefik-gateway
       namespace: traefik
-      sectionName: https-argocd
+      sectionName: http
   hostnames:
     - argocd.golden-horde.ir
   rules:
