@@ -15,3 +15,4 @@ spec:
               - name: traefik-gateway
                 namespace: traefik
                 kind: Gateway
+                sectionName: http
