@@ -12,11 +12,15 @@ spec:
       allowedRoutes:
         namespaces:
           from: All
-    - name: https
+    - name: https-argocd
       port: 443
       protocol: HTTPS
+      hostname: argocd.golden-horde.ir
       tls:
         mode: Terminate
+        certificateRefs:
+          - name: argocd-tls
+            namespace: traefik
       allowedRoutes:
         namespaces:
           from: All
