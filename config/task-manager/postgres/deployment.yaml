@@ -17,7 +17,7 @@ spec:
       initContainers:
         - name: create-data-dir
           image: busybox
-          command: ["sh", "-c", "mkdir -p /kubernetes/task-manager/postgres && chmod 700 /kubernetes/task-manager/postgres"]
+          command: ["sh", "-c", "mkdir -p /kubernetes/task-manager/postgres && chown -R 999:999 /kubernetes/task-manager/postgres && chmod 700 /kubernetes/task-manager/postgres"]
           volumeMounts:
             - name: host-root
               mountPath: /kubernetes
