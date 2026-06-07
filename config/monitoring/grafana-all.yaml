@@ -68,7 +68,7 @@ spec:
       volumes:
       - name: grafana-storage
         persistentVolumeClaim:
-          claimName: grafana-storage-ceph
+          claimName: grafana-storage
       - name: grafana-config
         configMap:
           name: grafana-config
