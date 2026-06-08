@@ -36,6 +36,9 @@ data:
     [security]
     admin_user = admin
     admin_password = admin
+
+    [server]
+    root_url = http://grafana.golden-horde.ir
 ---
 apiVersion: apps/v1
 kind: Deployment
