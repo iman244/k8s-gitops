@@ -9,7 +9,7 @@ spec:
       namespace: {{ .Values.gateway.namespace }}
       sectionName: {{ .Values.gateway.sectionName }}
   hostnames:
-    - {{ .Values.ingress.frontend.hostname }}
+    - {{ .Values.httproute.frontend.hostname }}
   rules:
     - matches:
         - path:

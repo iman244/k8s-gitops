@@ -42,7 +42,7 @@ gateway:
   namespace: traefik
   sectionName: http
 
-ingress:
+httproute:
   frontend:
     hostname: task-manager-helm.golden-horde.ir
   backend:
