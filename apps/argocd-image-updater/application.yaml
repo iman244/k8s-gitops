@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd-image-updater
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/iman244/ctesiphon-k8s-gitops.git
+    targetRevision: HEAD
+    path: charts/argocd-image-updater
+    helm:
+      valuesObject:
+        config:
+          gitCredentials: |
+            https://iman244:$git_token@github.com
+          argocd:
+            grpcWeb: true
+            serverAddress: http://argocd-server.argocd
+            insecure: true
+            plaintext: true
+        authScripts:
+          enabled: false
+        extraEnv:
+          - name: GIT_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: argocd-image-updater-secret
+                key: gitCredentials
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
