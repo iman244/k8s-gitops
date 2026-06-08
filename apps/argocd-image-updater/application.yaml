@@ -1,22 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd-image-updater
+  name: argocd-image-updater-config
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/iman244/ctesiphon-k8s-gitops.git
     targetRevision: HEAD
-    path: charts/argocd-image-updater
-    helm:
-      valuesObject:
-        config:
-          argocd:
-            grpcWeb: true
-            serverAddress: http://argocd-server.argocd
-            insecure: true
-            plaintext: true
+    path: config/argocd-image-updater
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
@@ -24,5 +16,3 @@ spec:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
