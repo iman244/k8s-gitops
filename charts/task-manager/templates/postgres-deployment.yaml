@@ -8,7 +8,7 @@ spec:
     matchLabels:
       app: postgres
   serviceName: postgres
-  replicas: 1
+  replicas: {{ .Values.postgres.replicas }}
   template:
     metadata:
       labels:

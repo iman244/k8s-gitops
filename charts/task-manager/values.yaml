@@ -18,6 +18,7 @@ postgres:
     repository: postgres
     tag: "18"
   port: 5432
+  replicas: 2
   storage: 2Gi
   storageClassName: manual
   hostPath: /kubernetes/task-manager/postgres
@@ -27,6 +28,7 @@ redis:
     repository: redis
     tag: "8.8"
   port: 6379
+  replicas: 2
 secret:
   name: task-manager-secrets-external
 gateway:
