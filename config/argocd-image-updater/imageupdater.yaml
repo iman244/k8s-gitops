@@ -8,6 +8,7 @@ spec:
     method: "git:secret:argocd/argocd-image-updater-secret"
     gitConfig:
       branch: "main"
+      writeBackTarget: "helmvalues:/charts/task-manager/values.yaml"
   applicationRefs:
     - namePattern: task-manager-helm
       images:
@@ -16,14 +17,16 @@ spec:
           commonUpdateSettings:
             updateStrategy: semver
             allowTags: "regexp:^v[0-9]+\\.[0-9]+\\.[0-9]+$"
-          manifestTarget:
+          manifestTargets:
             helm:
+              name: backend.image.repository
               tag: backend.image.tag
         - alias: frontend
           imageName: iman244/task-manager-nextjs
           commonUpdateSettings:
             updateStrategy: semver
             allowTags: "regexp:^v[0-9]+\\.[0-9]+\\.[0-9]+$"
-          manifestTarget:
+          manifestTargets:
             helm:
+              name: frontend.image.repository
               tag: frontend.image.tag
