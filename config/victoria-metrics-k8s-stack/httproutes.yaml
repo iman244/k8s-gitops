@@ -1,0 +1,67 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: grafana
+  namespace: victoria-metrics-stack
+spec:
+  parentRefs:
+    - name: traefik-gateway
+      namespace: traefik
+      sectionName: http
+  hostnames:
+    - grafana.golden-horde.ir
+  rules:
+    - backendRefs:
+        - name: victoria-metrics-stack-grafana
+          port: 80
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: vmsingle
+  namespace: victoria-metrics-stack
+spec:
+  parentRefs:
+    - name: traefik-gateway
+      namespace: traefik
+      sectionName: http
+  hostnames:
+    - vmsingle.golden-horde.ir
+  rules:
+    - backendRefs:
+        - name: vmsingle-victoria-metrics-stack-vmks
+          port: 8428
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: vmalert
+  namespace: victoria-metrics-stack
+spec:
+  parentRefs:
+    - name: traefik-gateway
+      namespace: traefik
+      sectionName: http
+  hostnames:
+    - vmalert.golden-horde.ir
+  rules:
+    - backendRefs:
+        - name: vmalert-victoria-metrics-stack-vmks
+          port: 8080
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: alertmanager
+  namespace: victoria-metrics-stack
+spec:
+  parentRefs:
+    - name: traefik-gateway
+      namespace: traefik
+      sectionName: http
+  hostnames:
+    - alertmanager.golden-horde.ir
+  rules:
+    - backendRefs:
+        - name: vmalertmanager-victoria-metrics-stack-vmks
+          port: 9093
