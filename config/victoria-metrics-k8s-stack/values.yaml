@@ -18,3 +18,7 @@ grafana:
       - ReadWriteOnce
     size: 2Gi
     existingClaim: grafana-pvc
+
+defaultDashboards:
+  annotations:
+    argocd.argoproj.io/sync-options: ServerSideApply=true

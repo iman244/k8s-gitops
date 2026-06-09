@@ -21,3 +21,24 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+      - ServerSideApply=true
+      - RespectIgnoreDifferences=true
+  ignoreDifferences:
+    - group: ""
+      kind: Secret
+      name: victoria-metrics-stack-victoria-metrics-operator-validation
+      namespace: victoria-metrics-stack
+      jsonPointers:
+        - /data
+    - group: admissionregistration.k8s.io
+      kind: ValidatingWebhookConfiguration
+      name: victoria-metrics-stack-victoria-metrics-operator-admission
+      jqPathExpressions:
+        - '.webhooks[]?.clientConfig.caBundle'
+    - kind: Secret
+      jsonPointers:
+        - /data/admin-password
+    - group: apps
+      kind: Deployment
+      jsonPointers:
+        - /spec/template/metadata/annotations/checksum~1secret
