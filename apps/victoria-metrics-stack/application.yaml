@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://gitlab.com/iman244/ctesiphon-k8s-gitops
+    repoURL: https://github.com/iman244/ctesiphon-k8s-gitops
     targetRevision: HEAD
     path: charts/victoria-metrics-k8s-stack
     helm:
