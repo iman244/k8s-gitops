@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: monitoring
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://gitlab.com/iman244/ctesiphon-k8s-gitops
+    targetRevision: HEAD
+    path: charts/victoria-metrics-k8s-stack
+    helm:
+      valueFiles:
+        - ../../config/victoria-metrics-k8s-stack/values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
