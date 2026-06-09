@@ -21,7 +21,7 @@ postgres:
   replicas: 2
   storage: 2Gi
   storageClassName: manual
-  hostPath: /kubernetes/task-manager/postgres
+  hostPath: /kubernetes-volumes/task-manager/postgres
   pgdata: /var/lib/postgresql/data/pgdata
 redis:
   image:
