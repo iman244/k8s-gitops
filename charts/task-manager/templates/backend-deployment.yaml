@@ -22,12 +22,12 @@ spec:
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
-                  name: task-manager-secrets
+                  name: {{ .Values.secret.name }}
                   key: DATABASE_URL
             - name: REDIS_URL
               valueFrom:
                 secretKeyRef:
-                  name: task-manager-secrets
+                  name: {{ .Values.secret.name }}
                   key: REDIS_URL
             - name: ALLOWED_ORIGINS
               value: {{ .Values.backend.allowedOrigins | quote }}

@@ -27,6 +27,8 @@ redis:
     repository: redis
     tag: "8.8"
   port: 6379
+secret:
+  name: task-manager-secrets-external
 secrets:
   postgresUser: postgres
   postgresPassword: password
