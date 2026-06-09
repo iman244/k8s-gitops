@@ -1,11 +1,18 @@
 nameOverride: "vmks"
 
+vmsingle:
+  spec:
+    storage:
+      resources:
+        requests:
+          storage: 2Gi
 grafana:
   admin:
     existingSecret: "grafana-admin-secret"
     userKey: admin-user
     passwordKey: admin-password
-
+  initChownData:
+    enabled: false
   grafana.ini:
     server:
       root_url: "https://grafana.golden-horde.ir"
