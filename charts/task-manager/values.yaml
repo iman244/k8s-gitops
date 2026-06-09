@@ -1,10 +1,10 @@
-namespace: task-manager-helm
+namespace: task-manager
 backend:
   image:
     repository: iman244/task-manager-fastapi
     tag: v1.0.1
   port: 8000
-  allowedOrigins: '["http://task-manager-helm.golden-horde.ir"]'
+  allowedOrigins: '["http://task-manager.golden-horde.ir"]'
   replicas: 1
 frontend:
   image:
@@ -20,7 +20,7 @@ postgres:
   port: 5432
   storage: 2Gi
   storageClassName: manual
-  hostPath: /kubernetes/task-manager-helm/postgres
+  hostPath: /kubernetes/task-manager/postgres
   pgdata: /var/lib/postgresql/data/pgdata
 redis:
   image:
@@ -37,6 +37,6 @@ gateway:
   sectionName: http
 httproute:
   frontend:
-    hostname: task-manager-helm.golden-horde.ir
+    hostname: task-manager.golden-horde.ir
   backend:
-    hostname: task-manager-backend-helm.golden-horde.ir
+    hostname: task-manager-backend.golden-horde.ir
