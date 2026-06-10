@@ -8,7 +8,7 @@ spec:
     method: "git:secret:argocd/argocd-image-updater-secret"
     gitConfig:
       branch: "main"
-      writeBackTarget: "helmvalues:/charts/task-manager/values.yaml"
+      writeBackTarget: "helmvalues:/config/task-manager/values.yaml"
   applicationRefs:
     - namePattern: task-manager
       images:
