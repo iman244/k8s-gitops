@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: http://192.168.180.5/i.sharafi/ctesiphon-k8s-gitops
+    repoURL: https://github.com/iman244/ctesiphon-k8s-gitops.git
     targetRevision: HEAD
     path: charts/task-manager
     helm:
