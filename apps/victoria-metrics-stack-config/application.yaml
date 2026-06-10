@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: victoria-metrics-stack-config
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
 spec:
   project: default
   source:
