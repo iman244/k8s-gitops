@@ -62,6 +62,8 @@ spec:
             periodSeconds: 30
             timeoutSeconds: 5
             failureThreshold: 3
+          resources:
+            {{- toYaml .Values.postgres.resources | nindent 12 }}
       volumes:
         - name: postgres-storage
           persistentVolumeClaim:

@@ -30,3 +30,5 @@ spec:
             periodSeconds: 30
             timeoutSeconds: 5
             failureThreshold: 3
+          resources:
+            {{- toYaml .Values.redis.resources | nindent 12 }}

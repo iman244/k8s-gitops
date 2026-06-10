@@ -6,6 +6,13 @@ backend:
   port: 8000
   allowedOrigins: '["http://task-manager.golden-horde.ir"]'
   replicas: 2
+  resources:
+    requests:
+      cpu: 15m
+      memory: 210Mi
+    limits:
+      cpu: 150m
+      memory: 320Mi
 frontend:
   image:
     repository: iman244/task-manager-nextjs
@@ -13,6 +20,13 @@ frontend:
   port: 3000
   apiUrl: http://backend:8000
   replicas: 2
+  resources:
+    requests:
+      cpu: 25m
+      memory: 280Mi
+    limits:
+      cpu: 150m
+      memory: 400Mi
 postgres:
   image:
     repository: postgres
@@ -23,12 +37,26 @@ postgres:
   storageClassName: manual
   hostPath: /kubernetes-volumes/task-manager/postgres
   pgdata: /var/lib/postgresql/data/pgdata
+  resources:
+    requests:
+      cpu: 50m
+      memory: 180Mi
+    limits:
+      cpu: 200m
+      memory: 300Mi
 redis:
   image:
     repository: redis
     tag: "8.8"
   port: 6379
   replicas: 2
+  resources:
+    requests:
+      cpu: 20m
+      memory: 64Mi
+    limits:
+      cpu: 100m
+      memory: 128Mi
 secret:
   name: task-manager-secrets-external
 gateway:
