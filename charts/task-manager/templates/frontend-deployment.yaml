@@ -8,16 +8,26 @@ spec:
     matchLabels:
       app: frontend
   replicas: {{ .Values.frontend.replicas }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
   template:
     metadata:
       labels:
         app: frontend
     spec:
+      terminationGracePeriodSeconds: 30
       containers:
         - name: frontend
           image: {{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag }}
           ports:
             - containerPort: {{ .Values.frontend.port }}
+          lifecycle:
+            preStop:
+              exec:
+                command: ["sleep", "5"]
           env:
             - name: API_URL
               value: {{ .Values.frontend.apiUrl }}
