@@ -1,0 +1,42 @@
+namespace: task-manager
+backend:
+  image:
+    repository: iman244/task-manager-fastapi
+    tag: v1.0.1
+  port: 8000
+  allowedOrigins: '["http://task-manager.golden-horde.ir"]'
+  replicas: 2
+frontend:
+  image:
+    repository: iman244/task-manager-nextjs
+    tag: v1.0.2
+  port: 3000
+  apiUrl: http://backend:8000
+  replicas: 2
+postgres:
+  image:
+    repository: postgres
+    tag: "18"
+  port: 5432
+  replicas: 2
+  storage: 2Gi
+  storageClassName: manual
+  hostPath: /kubernetes-volumes/task-manager/postgres
+  pgdata: /var/lib/postgresql/data/pgdata
+redis:
+  image:
+    repository: redis
+    tag: "8.8"
+  port: 6379
+  replicas: 2
+secret:
+  name: task-manager-secrets-external
+gateway:
+  name: traefik-gateway
+  namespace: traefik
+  sectionName: http
+httproute:
+  frontend:
+    hostname: task-manager.golden-horde.ir
+  backend:
+    hostname: task-manager-backend.golden-horde.ir

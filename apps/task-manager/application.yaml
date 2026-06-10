@@ -6,17 +6,12 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/iman244/ctesiphon-k8s-gitops.git
+    repoURL: http://192.168.180.5/i.sharafi/ctesiphon-k8s-gitops
     targetRevision: HEAD
     path: charts/task-manager
     helm:
-      valuesObject:
-        namespace: task-manager
-        httproute:
-          frontend:
-            hostname: task-manager.golden-horde.ir
-          backend:
-            hostname: task-manager-backend.golden-horde.ir
+      valueFiles:
+        - ../../config/task-manager/values.yaml        
   destination:
     server: https://kubernetes.default.svc
     namespace: task-manager
