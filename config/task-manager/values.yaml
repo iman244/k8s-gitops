@@ -16,7 +16,7 @@ backend:
 frontend:
   image:
     repository: iman244/task-manager-nextjs
-    tag: v1.0.3
+    tag: v1.0.4
   port: 3000
   apiUrl: http://backend:8000
   replicas: 2
