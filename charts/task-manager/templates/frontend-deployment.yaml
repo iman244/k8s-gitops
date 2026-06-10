@@ -33,13 +33,13 @@ spec:
               value: {{ .Values.frontend.apiUrl }}
           readinessProbe:
             httpGet:
-              path: /
+              path: /api/health
               port: {{ .Values.frontend.port }}
             initialDelaySeconds: 10
             periodSeconds: 5
           livenessProbe:
             httpGet:
-              path: /
+              path: /api/health
               port: {{ .Values.frontend.port }}
             initialDelaySeconds: 10
             periodSeconds: 30
