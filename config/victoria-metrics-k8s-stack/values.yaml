@@ -1,11 +1,19 @@
 nameOverride: "vmks"
 
+
 vmsingle:
   spec:
     storage:
       resources:
         requests:
           storage: 2Gi
+    serviceSpec:
+      spec:
+        type: NodePort
+        ports:
+          - port: 8428
+            nodePort: 32428
+            
 grafana:
   admin:
     existingSecret: "grafana-admin-secret"
@@ -14,16 +22,16 @@ grafana:
   initChownData:
     enabled: false
 
+  service:
+    type: NodePort
+    nodePort: 32000
+
   sidecar:
     dashboards:
       enabled: false
     datasources:
       enabled: false
       
-  grafana.ini:
-    server:
-      root_url: "https://grafana.golden-horde.ir"
-
   persistence:
     enabled: true
     type: pvc
@@ -36,3 +44,31 @@ grafana:
 defaultDashboards:
   annotations:
     argocd.argoproj.io/sync-options: ServerSideApply=true
+
+
+vmalert:
+  spec:
+    serviceSpec:
+      spec:
+        type: NodePort
+        ports:
+          - port: 8080
+            nodePort: 32080
+
+vmagent:
+  spec:
+    serviceSpec:
+      spec:
+        type: NodePort
+        ports:
+          - port: 8429
+            nodePort: 32429
+
+alertmanager:
+  spec:
+    serviceSpec:
+      spec:
+        type: NodePort
+        ports:
+          - port: 9093
+            nodePort: 32093
