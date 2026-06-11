@@ -4,8 +4,10 @@ metadata:
   name: frontend
   namespace: {{ .Values.namespace }}
 spec:
+  type: NodePort
   selector:
     app: frontend
   ports:
     - port: {{ .Values.frontend.port }}
       targetPort: {{ .Values.frontend.port }}
+      nodePort: 30300
