@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/iman244/ctesiphon-k8s-gitops.git
+    repoURL: https://github.com/iman244/k8s-gitops.git
     targetRevision: HEAD
     path: apps
     directory:
